@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import authSevice from "../appwrite/authService";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from "./Button";
+import Logo from "./Logo";
 
 function AddMember() {
   const [userData,setUserData] = useState({});
@@ -12,6 +14,7 @@ function AddMember() {
     e.preventDefault()
     const btn = e.target.btn
       const name = e.target.name
+      const email = e.target.email
       const password = e.target.password
       btn.disabled = true
         btn.innerText = "Adding..."
@@ -19,6 +22,7 @@ function AddMember() {
     .then(()=>{
       toast("Member added");
       name.value = "";
+      email.value = "";
       password.value = "";
     })
     .catch(err=>{
@@ -34,11 +38,14 @@ function AddMember() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <ToastContainer position="top-center"/>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
+          {/* <img
             className="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             alt="Your Company"
-          />
+          /> */}
+          <div className=' text-center'>
+          <Logo span=" font-extrabold text-2xl md:text-3xl text-yellow-300" className=" font-bold text-xl md:text-2xl text-white"/>
+          </div>
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Add new member
           </h2>
@@ -90,7 +97,7 @@ function AddMember() {
                   htmlFor="password"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Password
+                  Set a Passcode
                 </label>
               </div>
               <div className="mt-2">
@@ -109,14 +116,15 @@ function AddMember() {
             </div>
 
             <div>
-              <button
+              {/* <button
               type="submit"
               name="btn"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                 disabled:bg-indigo-400"
               >
                 Add Member
-              </button>
+              </button> */}
+              <Button type={"submit"} label={"Log in"} className='w-full'/>
             </div>
           </form>
         </div>

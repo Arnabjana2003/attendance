@@ -1,17 +1,26 @@
 import React from 'react'
 import authSevice from '../appwrite/authService'
 import { logout } from '../../redux/authSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
 
 function Logout({className}) {
-    const logOut = ()=>{
+  const dispatch = useDispatch();
+    const logOut = (e)=>{
+      e.target.disabled = true;
         authSevice.logout().then(()=>{
             dispatch(logout())
-            toast("Logout Successful")
+            location.reload(true)
         }).catch((err)=>toast(err.message))
+        .finally(()=>{
+          e.target.disabled = false;
+        })
     }
   return (
     <div>
-        <button className={className} onClick={logOut}>Logout</button>
+      <ToastContainer/>
+        <button className={` disabled:opacity-50 ${className}`} onClick={logOut}>Logout</button>
     </div>
   )
 }

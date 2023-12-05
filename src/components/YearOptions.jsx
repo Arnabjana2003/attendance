@@ -24,9 +24,9 @@ function YearOptions({display,action}) {
         }
     }
   return (
-    <div className=' p-4 w-[320px] bg-slate-300 flex flex-col items-center rounded-md'>
+    <div className=' p-3 w-[250px] max-w-sm bg-gradient-to-tl to-indigo-400 from-blue-900 backdrop-blur-lg flex flex-col items-center rounded-md text-blue-900 mt-2 shadow-lg shadow-indigo-900'>
         <ToastContainer/>
-        <h4 className=' text-lg font-semibold text-slate-800'>Choose the Year</h4>
+        <h4 className=' text-lg font-semibold text-white'>Choose the Year</h4>
         <select className=' w-full mt-3 p-2 rounded-md outline-none' onChange={(e)=>onCng(e.target)}>
             <option>Select</option>
             <option value="firstyear">1st year</option>
@@ -36,7 +36,7 @@ function YearOptions({display,action}) {
         </select>
         <div>
         <button className='mt-3 py-1 px-2 mx-2 rounded-md bg-slate-100' onClick={()=>display(false)}>Cancel</button>
-        <button className='mt-3 py-1 px-2 bg-blue-400 rounded-md text-white' onClick={handleClick}>Done</button>
+        <button className='mt-3 py-1 px-2 bg-yellow-500 rounded-md' onClick={handleClick}>Done</button>
         </div>
     </div>
   )

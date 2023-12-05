@@ -5,8 +5,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Logout from '../components/Logout';
 import { Link, useNavigate } from 'react-router-dom';
+import Logo from '../components/Logo';
+import { useSelector } from 'react-redux';
 
 function Dashboard() {
+    const userData = useSelector(state=>state.auth.authData)
     const navigate = useNavigate()
     const [option,setOption] = useState(false);
     const showOption = (val)=>setOption(val)
@@ -14,9 +17,14 @@ function Dashboard() {
         setOption(mes)
     }
     return(
-        <>
+        <div className=' min-h-screen bg-white'>
         <ToastContainer/>
-        <div>
+        <header className=' flex justify-between p-2 bg-blue-900 shadow-md shadow-indigo-950 text-white text-md sm:text-lg lg:text-xl'>
+            <Logo/>
+            <h5>{userData.name || "MRC"}</h5>
+        </header>
+       <main>
+       <div>
             {option?(<div className=' fixed w-full flex justify-center'>
                 <div>
                 <YearOptions display={showOption} action={option}/>
@@ -28,7 +36,8 @@ function Dashboard() {
         </div>
         <Link to={"/"}>Home</Link>
         <Logout/>
-        </>
+       </main>
+        </div>
     )
 }
 

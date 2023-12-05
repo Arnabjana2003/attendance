@@ -10,6 +10,7 @@ import Header from './components/Header'
 function App() {
   console.log("App is running");
   const dispatch = useDispatch();
+  const [dataUpdate,setDataUpdate] = useState(false)
 
   const getDetails = ()=>{
     authService.getCurrentUSer()
@@ -19,6 +20,7 @@ function App() {
     .catch(()=>{
       dispatch(logout());
     })
+    .finally(()=>setDataUpdate(true))
 
     services.getStudents(String(import.meta.env.VITE_APPWRITE_FIRSTYEAR_STUDENTS_COLLECTION_ID))
     .then(data=>{
@@ -46,8 +48,8 @@ function App() {
   }
   useEffect(getDetails,[]);
   return (
-    <div>
-      <Outlet/>
+    <div className=' w-full min-h-screen bg-gradient-to-tl to-blue-900 from-blue-500 text-white'>
+      {dataUpdate?<Outlet/>:"Loading..."}
     </div>
   )
 }
