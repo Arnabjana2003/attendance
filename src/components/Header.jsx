@@ -9,7 +9,7 @@ function Header() {
     const authStatus = useSelector(state=>state.auth.status)
   return (
     <div>
-        <header className=' flex justify-between p-2 bg-blue-900 shadow-md shadow-indigo-950 text-white text-md sm:text-lg lg:text-xl'>
+        <header className=' flex justify-between p-2 items-center bg-blue-900 shadow-md shadow-indigo-950 text-white text-md sm:text-lg lg:text-xl'>
             <Logo/>
             <nav className=' flex w-[80%] justify-end'>
                 {!authStatus?(
@@ -17,8 +17,8 @@ function Header() {
                     Teacher's Login
                     </Link>
                 ):(<>
-                <div className=' mx-2 border border-yellow-300 px-2 rounded-md'><Logout/></div>
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <div className=' mr-3 md:mr-10 border border-yellow-300 px-2 rounded-md'><Logout/></div>
+                <Link to={"/dashboard"} className=' px-2 rounded-md hover:bg-yellow-300 hover:text-blue-900'>Dashboard</Link>
                 </>)}
             </nav>
         </header>

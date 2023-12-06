@@ -4,6 +4,7 @@ import services from '../appwrite/services';
 import {useParams} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from "./Button"
 
 function Attendance() {
 
@@ -41,11 +42,12 @@ function Attendance() {
   }
 
     return (
-        <>
+        <div className=''>
         <ToastContainer/>
         <ul role="list" className=" p-3 divide-y divide-red-200">
           {students && students.map((student) => (
-            <li key={student.roll} className="md:flex justify-evenly gap-x-6 py-5">
+            <li key={student.roll} className="flex justify-evenly gap-x-6 py-5">
+              <div className=' md:flex justify-between w-1/3'>
               <div className="flex min-w-0 gap-x-4">
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">{student.name}</p>
@@ -55,6 +57,7 @@ function Attendance() {
               <div className=" shrink-0 sm:flex sm:flex-col sm:items-end">
                 <p className="text-sm leading-6 text-gray-900">{student.roll}</p>
               </div>
+              </div>
               <div className=" flex items-center">
                 <label htmlFor={`present ${student.roll}`} className='mr-3'>Present</label>
                 <input type='checkBox' id={`present ${student.roll}`} value={student.roll} onChange={(e)=>onCng(e.target)}/>
@@ -62,8 +65,10 @@ function Attendance() {
             </li>
           ))}
         </ul>
-        <button className=' p-2 m-3 bg-blue-400 rounded-md' onClick={handleSubmit}>Submit</button>
-        </>
+        <div className=' text-center'>
+          <Button label={"Submit attendance"} onClick={handleSubmit}/>
+        </div>
+        </div>
       )
 }
 

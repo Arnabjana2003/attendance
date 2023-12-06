@@ -4,7 +4,7 @@ import ViewAttendance from '../components/ViewAttendance'
 
 function ViewAttendancePage() {
   return (
-    <div>
+    <div className=' min-h-screen bg-gradient-to-tl from-slate-200 to-slate-400 text-black'>
         <Header/>
         <ViewAttendance/>
     </div>

@@ -11,10 +11,10 @@ import ViewAttendancePage from './pages/ViewAttendancePage.jsx'
 import Protector from './components/Protector.jsx'
 import { Provider } from 'react-redux'
 import store from '../redux/store.js'
-import AddStudent from './components/AddStudent.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import YearOptions from './components/YearOptions.jsx'
 import Home from './pages/Home.jsx'
+import AddStudentPage from './pages/AddStudentPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:year/add-student",
-        element: <Protector><AddStudent/></Protector>
+        element: <Protector><AddStudentPage/></Protector>
       },
       {
         path:"/login",

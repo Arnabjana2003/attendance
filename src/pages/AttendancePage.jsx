@@ -4,7 +4,7 @@ import Attendance from '../components/attendance'
 
 function AttendancePage() {
   return (
-    <div>
+    <div className=' min-h-screen bg-gradient-to-tl from-slate-200 to-slate-400 text-black'>
         <Header/>
         <Attendance/>
     </div>

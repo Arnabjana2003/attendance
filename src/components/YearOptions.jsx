@@ -24,7 +24,7 @@ function YearOptions({display,action}) {
         }
     }
   return (
-    <div className=' p-3 w-[250px] max-w-sm bg-gradient-to-tl to-indigo-400 from-blue-900 backdrop-blur-lg flex flex-col items-center rounded-md text-blue-900 mt-2 shadow-lg shadow-indigo-900'>
+    <div className='  p-3 w-[250px] max-w-sm bg-gradient-to-tl to-indigo-400 from-blue-900 backdrop-blur-lg flex flex-col items-center rounded-md text-blue-900 mt-2 shadow-lg shadow-indigo-900'>
         <ToastContainer/>
         <h4 className=' text-lg font-semibold text-white'>Choose the Year</h4>
         <select className=' w-full mt-3 p-2 rounded-md outline-none' onChange={(e)=>onCng(e.target)}>
