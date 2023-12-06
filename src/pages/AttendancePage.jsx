@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
-import Attendance from '../components/attendance'
+import Attendance from '../components/Attendance'
 
 function AttendancePage() {
   return (
