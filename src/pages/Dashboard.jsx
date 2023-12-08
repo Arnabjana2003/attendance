@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import YearOptions from "../components/YearOptions";
 import Button from "../components/Button";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,13 +6,29 @@ import "react-toastify/dist/ReactToastify.css";
 import Logout from "../components/Logout";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import authSevice from "../appwrite/authService";
+import { login } from "../../redux/authSlice";
 
 function Dashboard() {
   const userData = useSelector((state) => state.auth.authData);
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [option, setOption] = useState(false);
   const [navSlide, setNavSlide] = useState(false);
+  const [userName,setUserName] = useState("");
+  useEffect(()=>{
+    if(userData.name){
+      setUserName(userData.name)
+    }else{
+      authSevice.getCurrentUSer()
+      .then(data=>{
+        dispatch(login(data))
+        setUserName(data.name)
+      })
+    }
+  },[])
+
   const handleClick = (mes) => {
     setOption(mes);
   };
@@ -57,7 +73,7 @@ function Dashboard() {
       <ToastContainer />
       <header className=" flex justify-between p-2 bg-blue-900 shadow-md shadow-indigo-950 text-white text-md sm:text-lg lg:text-xl">
         <Logo />
-        <h5 className=" hidden md:block">{userData.name || "MRC"}</h5>
+        <h5 className=" hidden md:block">{userName}</h5>
         <p className=" md:hidden" onClick={() => setNavSlide((prev) => !prev)}>
           {!navSlide ? (
             <svg

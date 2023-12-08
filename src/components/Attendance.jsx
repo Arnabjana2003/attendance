@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
 import services from '../appwrite/services';
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Button from "./Button"
-
 function Attendance() {
 
   const {year} = useParams()
-
+  const navigate = useNavigate()
   const students = useSelector(state=>state.student[year]);
-  const user = useSelector(state=>state.auth)
+  const userData = useSelector(state=>state.auth.authData)
   const [list,setList] = useState([]);
-  console.log(user.authData);
 
   const onCng = (event)=>{
     if(event.checked){
@@ -27,10 +25,12 @@ function Attendance() {
   const handleSubmit = ()=>{
     if(list.length !== 0){
       const lists = list.toString();
+      const teacher = userData.name
     services.attendance(import.meta.env.VITE_APPWRITE_FIRSTYEAR_PRESENTS_COLLECTION_ID,
-      lists)
+      lists,teacher)
     .then(()=>{
-      toast("Attendance submitted successfull")
+      toast("Attendance submitted successfully")
+      setTimeout(()=>navigate("/dashboard"),1500)
     })
     .catch((err)=>{
       toast(err.message)
@@ -38,7 +38,6 @@ function Attendance() {
     }else{
       toast("No Student Found")
     }
- 
   }
 
     return (
@@ -66,7 +65,7 @@ function Attendance() {
           ))}
         </ul>
         <div className=' text-center'>
-          <Button label={"Submit attendance"} onClick={handleSubmit}/>
+          <Button label={"Submit attendance"}onClick={handleSubmit}/>
         </div>
         </div>
       )

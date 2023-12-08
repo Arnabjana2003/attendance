@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 function ViewAttendance() {
   const { year } = useParams();
   const [list, setList] = useState([]);
-
   const students = useSelector((state) => state.student[`${year}`]);
   useEffect(() => {
     services
@@ -19,10 +18,12 @@ function ViewAttendance() {
       )
       .then((data) => {
         if (data.documents.length != 0) {
+          const prevList = [];
           data.documents.forEach((item) => {
             const ele = item.rollLists.split(",");
-            setList([...list, ...ele]);
+            prevList.push(...ele)
           });
+          setList(prevList)
         }
       })
       .catch((err) => {

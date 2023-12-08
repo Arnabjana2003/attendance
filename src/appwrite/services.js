@@ -19,12 +19,12 @@ export class Services{
         { name,roll}
             )
     }
-    async attendance(collectionId,rollLists){
+    async attendance(collectionId,rollLists,teacher){
             return await this.databases.createDocument(
                 String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
                 collectionId,
         ID.unique(),
-        {rollLists}
+        {rollLists,teacher}
             )
     }
 

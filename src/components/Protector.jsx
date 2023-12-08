@@ -5,7 +5,6 @@ import {useNavigate} from 'react-router-dom'
 function Protector({children,authentication = true}) {
   const navigate = useNavigate()
   const authStatus = useSelector(state=>state.auth.status)
-  console.log(authStatus);
     useEffect(()=>{
       if(authentication && !authStatus){
         navigate("/login")

@@ -11,7 +11,6 @@ function YearOptions({display,action}) {
     }
     const handleClick = ()=>{
         if(val && val != "Select"){
-            console.log(val,action);
             switch(action){
                 case "addstudent": navigate(`/${val}/add-student`)
                 break;
