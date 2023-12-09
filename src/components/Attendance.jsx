@@ -36,7 +36,7 @@ function Attendance() {
       toast(err.message)
     })
     }else{
-      toast("No Student Found")
+      toast("No Student Found. Please add students first")
     }
   }
 
